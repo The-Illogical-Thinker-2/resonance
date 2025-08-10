@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+@theme {
+  --font-display: "Orbitron", "Rajdhani", "Arial", sans-serif;
+  --font-mono: "Orbitron", monospace;
+}
+
+/* Custom racing-inspired styles */
+body {
+  font-family: "Rajdhani", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ef4444, #7f1d1d);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #dc2626, #991b1b);
+}
+
+/* Racing grid pattern background */
+.racing-grid {
+  background-image: 
+    linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* Racing stripes animation */
+@keyframes racing-stripes {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.racing-stripes {
+  animation: racing-stripes 2s linear infinite;
+}
