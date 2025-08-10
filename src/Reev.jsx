@@ -59,8 +59,8 @@ function Section({ title, text }) {
       whileHover="hover"
       animate="rest"
     >
-      <div className="text-4xl relative font-display">
-        <span>{title}</span>
+      <div className="text-4xl font-display">
+        <div className="inline-block relative"><span>{title}</span>
         <motion.div
           className="absolute left-0 bottom-0 h-[2px] bg-black"
           variants={{
@@ -69,6 +69,7 @@ function Section({ title, text }) {
           }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
+        </div>
       </div>
       <div>{text}</div>
     </motion.div>

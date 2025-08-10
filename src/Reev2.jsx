@@ -10,19 +10,19 @@ export function Reev2() {
     {
       title: "About SAEINDIA", 
       text: "SAEINDIA is a premier professional society for mobility engineers and an affiliate of SAE International. It supports student innovations like REEV by organizing technical events, competitions, and knowledge-sharing platforms aimed at transforming engineering education into practical excellence.",
-      img: "https://img.autocarindia.com/ExtraImages/20240213052530_Ferrari_SF_24_side.jpg"
+      img: "https://mclaren.bloomreach.io/delivery/resources/content/gallery/mclaren-racing/formula-1/2025/nsr/f1-75-live-m/web/mcl39-cover-image.jpg"
     },
     {
       title: "Vision",
       text: "Our vision is to drive the development of intelligent, sustainable, and efficient electric mobility systems through hands-on learning, interdisciplinary collaboration, and a deep passion for automotive technology.",
-      img: "https://img.autocarindia.com/ExtraImages/20240213052530_Ferrari_SF_24_side.jpg"
+      img: "https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/trackside-images/2024/F1_75_Live___Show/2200466852.webp"
     },
     {
       title: "Contact",
       text: <>For more details, reach us at: {" "}
         <span className="text-red-500 font-bold">reev.team@example.com</span>
       </>,
-      img: "https://img.autocarindia.com/ExtraImages/20240213052530_Ferrari_SF_24_side.jpg"
+      img: "https://www.astonmartin.com/-/media/models---amr25/heros/amr25_hero_desktop.jpg?mw=1920&rev=1dc4bd480a3d49fd92e45f025b68f624&hash=8CB01DC7BFC9D33E5D695A3318AFBABC"
     }
   ];
 
@@ -38,7 +38,7 @@ export function Reev2() {
         <div className="bg-black border-b border-red-500">
           <div className="container mx-auto px-6 py-16 lg:py-24">
             <div className="text-center relative">
-                            <motion.h1 
+              <motion.h1 
                 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-wider font-mono uppercase"
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,6 @@ function Sections({ title, text, img, index }) {
           isEven ? "lg:flex-row" : "lg:flex-row-reverse"
         }`}
       >
-        {/* Image */}
         <motion.div
           className="flex-1 relative"
           initial={{
@@ -137,7 +136,6 @@ function Sections({ title, text, img, index }) {
           </div>
         </motion.div>
 
-        {/* Text */}
         <motion.div
           className="flex-1 text-center lg:text-left"
           initial={{
@@ -162,7 +160,7 @@ function Sections({ title, text, img, index }) {
           }}
           viewport={{ once: false, amount: 0.3, margin: "-100px" }}
         >
-                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-wide font-mono uppercase relative inline-block">
+           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-wide font-mono uppercase relative inline-block">
              {title}
              <motion.div
                className="absolute left-0 -bottom-2 h-1/50 bg-gradient-to-r from-transparent via-red-500 to-transparent w-full"
