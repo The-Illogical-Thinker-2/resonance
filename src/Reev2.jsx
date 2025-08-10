@@ -4,7 +4,7 @@ export function Reev2() {
   const sections = [
     {
       title: "About REEV",
-      text: "SAEINDIA is a premier professional society for mobility engineers and an affiliate of SAE International. It supports student innovations like REEV by organizing technical events, competitions, and knowledge-sharing platforms aimed at transforming engineering education into practical excellence.",
+      text: <>Globally we are witnessing a technology shift in Automotive Propulsion towards electrification and Students in the Engineering community have to be the front runners in this change. SAEINDIA Bangalore has initiated REEV (Range Extended Electric Vehicle) in the 4 wheeler Urban Mobility space.<br/> REEV is a competition that has primary focus on range and fuel efficiency. The competition is going to drive the new age technologies in automotive industry, hybridization, light weighting, optimization, range extension, fuel awareness etc.</>,
       img: "https://img.autocarindia.com/ExtraImages/20240213052530_Ferrari_SF_24_side.jpg"
     },
     {
