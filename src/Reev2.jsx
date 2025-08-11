@@ -1,7 +1,23 @@
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 export function Reev2() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   const sections = [
     {
       title: "About REEV",
@@ -47,31 +63,29 @@ export function Reev2() {
               >
                 REEV - ABOUT SAEINDIA
               </motion.h1>
-              <motion.div
-                className="absolute left-1/2 -translate-x-1/2 -bottom-4 h-1/50 bg-gradient-to-r from-transparent via-red-500 to-transparent"
-                variants={{
-                  rest: { width: 0 },
-                  hover: { width: "60%" }
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              />
+                <motion.div
+                 className="absolute left-1/2 -translate-x-1/2 -bottom-4 h-1/50 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+                 variants={{
+                   rest: { width: isMobile ? "60%" : 0 },
+                   hover: { width: "60%" }
+                 }}
+                 transition={{ duration: 0.5, ease: "easeInOut" }}
+               />
             </div>
           </div>
         </div>
       </motion.div>
 
-             <div className="container mx-auto px-6 py-20 space-y-32 relative z-10">
-         <AnimatePresence mode="wait">
-           {sections.map((section, index) => (
-             <Sections
-               key={section.title}
-               title={section.title}
-               text={section.text}
-               img={section.img}
-               index={index}
-             />
-           ))}
-         </AnimatePresence>
+        <div className="container mx-auto px-6 py-20 space-y-32 relative z-10">
+         {sections.map((section, index) => (
+           <Sections
+             key={section.title}
+             title={section.title}
+             text={section.text}
+             img={section.img}
+             index={index}
+           />
+         ))}
        </div>
     </div>
   );
@@ -79,18 +93,33 @@ export function Reev2() {
 
 function Sections({ title, text, img, index }) {
   const isEven = index % 2 === 0;
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
        return (
-       <motion.div
-         ref={sectionRef}
-         className="relative"
-         initial={{ opacity: 0, y: 100 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         exit={{ opacity: 0, y: -100 }}
-         transition={{ duration: 0.8, ease: "easeOut" }}
-         viewport={{ once: true, amount: 0.3, margin: "-100px" }}
-       >
+        <motion.div
+          ref={sectionRef}
+          className="relative"
+          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: isMobile ? 1 : undefined, y: isMobile ? 0 : undefined }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3, margin: "-100px" }}
+        >
         <motion.div
           className="group"
           initial="rest"
@@ -102,79 +131,86 @@ function Sections({ title, text, img, index }) {
           isEven ? "lg:flex-row" : "lg:flex-row-reverse"
         }`}
       >
-                                   <motion.div
-            className="flex-1 relative"
-            initial={{
-              opacity: 0,
-              x: isEven ? -100 : 100,
-              scale: 0.9,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              x: isEven ? -100 : 100,
-              scale: 0.9,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.2,
-            }}
-            viewport={{ once: true, amount: 0.3, margin: "-100px" }}
-          >
+            <motion.div
+              className="flex-1 relative"
+              initial={{
+                opacity: isMobile ? 1 : 0,
+                x: isMobile ? 0 : (isEven ? -100 : 100),
+                scale: isMobile ? 1 : 0.9,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                scale: 1,
+              }}
+              animate={{
+                opacity: isMobile ? 1 : undefined,
+                x: isMobile ? 0 : undefined,
+                scale: isMobile ? 1 : undefined,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.2,
+              }}
+              viewport={{ once: true, amount: 0.3, margin: "-100px" }}
+            >
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/30 z-10 group-hover:from-black/40 transition-all duration-500" />
-            <motion.img
-               src={img}
-               alt={title}
-              variants={{
-                rest: { filter: "brightness(50%)", scale: 1 },
-                hover: { filter: "brightness(120%)", scale: 1.05 }
-               }}
-              className="w-full h-80 lg:h-96 object-cover"
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-             />
+              <motion.img
+                src={img}
+                alt={title}
+               variants={{
+                 rest: { 
+                   filter: isMobile ? "brightness(100%)" : "brightness(50%)", 
+                   scale: 1 
+                 },
+                 hover: { 
+                   filter: isMobile ? "brightness(120%)" : "brightness(120%)", 
+                   scale: 1.05 
+                 }
+                }}
+               className="w-full h-80 lg:h-96 object-cover"
+               transition={{ duration: 0.5, ease: "easeInOut" }}
+               loading="lazy"
+              />
           </div>
         </motion.div>
 
             <motion.div
-            className="flex-1 text-center lg:text-left"
-            initial={{
-              opacity: 0,
-              x: isEven ? 100 : -100,
-              y: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              x: isEven ? 100 : -100,
-              y: 30,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.4,
-            }}
-            viewport={{ once: true, amount: 0.3, margin: "-100px" }}
-          >
+              className="flex-1 text-center lg:text-left"
+              initial={{
+                opacity: isMobile ? 1 : 0,
+                x: isMobile ? 0 : (isEven ? 100 : -100),
+                y: isMobile ? 0 : 30,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                y: 0,
+              }}
+              animate={{
+                opacity: isMobile ? 1 : undefined,
+                x: isMobile ? 0 : undefined,
+                y: isMobile ? 0 : undefined,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.4,
+              }}
+              viewport={{ once: true, amount: 0.3, margin: "-100px" }}
+            >
            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 tracking-wide font-mono uppercase relative inline-block">
              {title}
-             <motion.div
-               className="absolute left-0 -bottom-2 h-1/50 bg-gradient-to-r from-transparent via-red-500 to-transparent w-full"
-               variants={{
-                 rest: { opacity: 0 },
-                 hover: { opacity: 1 }
-               }}
-               transition={{ duration: 0.6, ease: "easeInOut" }}
-              />
+                           <motion.div
+                className="absolute left-0 -bottom-2 h-1/50 bg-gradient-to-r from-transparent via-red-500 to-transparent w-full"
+                variants={{
+                  rest: { opacity: isMobile ? 1 : 0 },
+                  hover: { opacity: 1 }
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+               />
            </h2>
           <div className="text-lg lg:text-xl leading-relaxed text-white font-light max-w-2xl">
             {text}
