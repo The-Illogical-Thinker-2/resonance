@@ -37,7 +37,11 @@ export function Reev2() {
     {
       title: "Contact",
       text: <>For more details, reach us at: {" "}
-        <span className="text-red-500 font-bold">reev.team@example.com</span>
+        <a className="text-red-500 font-bold"
+          href="https://www.youtube.com/watch?v=xvFZjo5PgG0" 
+          target="_blank"
+          rel="noopener noreferrer">reev.team@example.com
+        </a>
       </>,
       img: "https://www.astonmartin.com/-/media/models---amr25/heros/amr25_hero_desktop.jpg?mw=1920&rev=1dc4bd480a3d49fd92e45f025b68f624&hash=8CB01DC7BFC9D33E5D695A3318AFBABC"
     }
