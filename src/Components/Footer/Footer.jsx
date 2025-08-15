@@ -11,11 +11,10 @@ function Footer() {
               <React.Fragment key={i}>
                 <a
                   href="#"
-                  className="hover:text-[var(--primary-color)] transition-colors"
+                  className="hover:text-[var(--primary-color)] transition-colors mx-3"
                 >
                   {link}
                 </a>
-                {i < 5 && <span className="text-gray-500">|</span>}
               </React.Fragment>
             )
           )}
@@ -27,16 +26,16 @@ function Footer() {
             { icon: "ri-instagram-line", url: "#" },
             { icon: "ri-facebook-circle-fill", url: "#" },
             { icon: "ri-linkedin-fill", url: "#" },
-            { icon: "ri-youtube-fill", url: "#" },
+            { icon: "ri-youtube-fill ", url: "#" },
           ].map(({ icon, url }, idx) => (
             <a
               key={idx}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-[40px] w-[40px] flex items-center justify-center rounded-full border border-gray-400 hover:bg-[var(--primary-color)] hover:text-white transition-all duration-300"
+              className="w-20 h-20 flex items-center justify-center text-white  hover:text-red-600 transition-all duration-300"
             >
-              <i className={`${icon} text-xl`}></i>
+              <i className={`${icon} text-3xl`}></i>
             </a>
           ))}
         </div>

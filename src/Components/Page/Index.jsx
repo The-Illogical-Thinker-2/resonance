@@ -85,8 +85,8 @@ export default function Index() {
         <video
           src="/Sonny Hayes - Lose My Mind.mp4"
           autoPlay
-          muted
           loop
+          muted
           playsInline
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover object-center"
@@ -114,7 +114,7 @@ export default function Index() {
         >
           <h1
             ref={reeRef}
-            className="text-[60px] md:text-[130px] font-black italic mb-4 hero-title font-mono tracking-widest transition-transform duration-300 ease-in-out text-red-500"
+            className="text-[60px] md:text-[130px] font-black italic mb-4 hero-title font-mono tracking-widest transition-transform duration-300 ease-in-out text-red-600"
             style={{
               textShadow: "0 0 30px rgba(220, 38, 38, 0.8)"
             }}
@@ -135,7 +135,7 @@ export default function Index() {
           <div className="mt-12">
           <button
             ref={taeRef}
-              className="group relative px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 font-mono"
+              className="group relative px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-600/25 font-mono"
             >
               <a href="#REEV" className="flex items-center space-x-2">
                 <span>Explore More</span>
@@ -148,7 +148,7 @@ export default function Index() {
         </div>
         
         {/* Floating Elements for Professional Touch */}
-        <div className="absolute top-20 left-20 w-32 h-32 border border-red-500/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 border border-red-600/20 rounded-full animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/20 rounded-full animate-pulse [animation-delay:1s]"></div>
       </section>
 
@@ -185,7 +185,7 @@ export default function Index() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="relative inline-block text-3xl font-bold text-white">
-            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-4 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
               Why Join Us ?
             </span>
           </h2>
@@ -233,7 +233,7 @@ export default function Index() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="relative inline-block text-5xl md:text-6xl font-light text-white mb-4 tracking-wide">
-              <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-4 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+              <span className="font-mono after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
                 Our Fleet
               </span>
             </h2>
@@ -249,7 +249,7 @@ export default function Index() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <div className="relative overflow-hidden bg-black h-[600px]">
+              <div className="relative overflow-hidden bg-black h-600">
                 <motion.img 
                   src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                   alt="REEV Racer"
@@ -260,9 +260,9 @@ export default function Index() {
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                                     <motion.h3
-                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
+                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-600"
                   >
-                    <span className="text-red-500 font-black italic">REEV</span> Racer
+                    <span className="text-red-600 font-black italic">REEV</span> Racer
                   </motion.h3>
                   <motion.p 
                     className="text-gray-300 text-base mb-4 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
@@ -270,7 +270,7 @@ export default function Index() {
                     High-Performance Electric Racing Vehicle
                   </motion.p>
                   <motion.div 
-                    className="flex items-center text-white text-sm font-light transition-colors duration-300 group-hover/card:text-red-500"
+                    className="flex items-center text-white text-sm font-light transition-colors duration-300 group-hover/card:text-red-600"
                   >
                     <span>Discover</span>
                     <motion.svg 
@@ -294,7 +294,7 @@ export default function Index() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <div className="relative overflow-hidden bg-black h-[600px]">
+              <div className="relative overflow-hidden bg-black h-600">
                 <motion.img 
                   src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                   alt="REEV GoCar"
@@ -305,9 +305,9 @@ export default function Index() {
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                                     <motion.h3
-                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
+                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-600"
                   >
-                    <span className="text-red-500 font-black italic">REEV</span> GoCar
+                    <span className="text-red-600 font-black italic">REEV</span> GoCar
                   </motion.h3>
                   <motion.p 
                     className="text-gray-300 text-base mb-4 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
@@ -315,7 +315,7 @@ export default function Index() {
                     Urban Electric Mobility Solution
                   </motion.p>
                   <motion.div 
-                    className="flex items-center text-white text-sm font-light transition-colors duration-300 group-hover/card:text-red-500"
+                    className="flex items-center text-white text-sm font-light transition-colors duration-300 group-hover/card:text-red-600"
                   >
                     <span>Discover</span>
                     <motion.svg 
@@ -346,7 +346,7 @@ export default function Index() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="relative inline-block text-3xl font-bold text-white">
-            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-4 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
               Sponsors
             </span>
           </h2>
@@ -363,7 +363,7 @@ export default function Index() {
                 <img src={slideImg1} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl ">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Connectivity{" "}
                     </span>
                   </h2>
@@ -374,7 +374,7 @@ export default function Index() {
                 <img src={slideImg2} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Graphic Designing{" "}
                     </span>
                   </h2>
@@ -385,7 +385,7 @@ export default function Index() {
                 <img src={slideImg3} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Readability
                     </span>
                   </h2>
@@ -396,7 +396,7 @@ export default function Index() {
                 <img src={slideImg4} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Professional Branding
                     </span>
                   </h2>
@@ -407,7 +407,7 @@ export default function Index() {
                 <img src={slideImg5} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       User-friendliness
                     </span>
                   </h2>
@@ -419,7 +419,7 @@ export default function Index() {
                 <img src={slideImg1} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Connectivity
                     </span>
                   </h2>
@@ -430,7 +430,7 @@ export default function Index() {
                 <img src={slideImg2} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Graphic Designing
                     </span>
                   </h2>
@@ -441,7 +441,7 @@ export default function Index() {
                 <img src={slideImg3} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Readability
                     </span>
                   </h2>
@@ -452,7 +452,7 @@ export default function Index() {
                 <img src={slideImg4} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       Professional Branding
                     </span>
                   </h2>
@@ -463,7 +463,7 @@ export default function Index() {
                 <img src={slideImg5} className="w-20 h-20 invert" alt="" />
                 <div>
                   <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-500">
+                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
                       User-friendliness
                     </span>
                   </h2>

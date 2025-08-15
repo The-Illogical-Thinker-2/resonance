@@ -100,7 +100,7 @@ const AboutREEV = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <h2 className="about-reev-heading text-4xl md:text-5xl lg:text-6xl font-black italic text-white tracking-wide font-mono uppercase relative inline-block">
-                <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+                <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
                   About REEV
                 </span>
               </h2>
