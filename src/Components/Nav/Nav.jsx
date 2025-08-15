@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      // Change background when scrolled past 100px (after video section)
+      setIsScrolled(scrollPosition > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    
-    <nav className="fixed top-0 left-0 w-full bg-black z-50 px-[8%] py-4 text-white border-b border-[--thin-border] bg-transparent absolute z-[99999] pointer-events-auto w-full">
+    <nav className={`fixed top-0 left-0 z-50 px-[8%] py-4 text-white border-b border-[--thin-border] pointer-events-auto w-full transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-black/95 backdrop-blur-md shadow-lg' 
+        : 'bg-transparent'
+    }`}>
       <div className="flex items-center justify-between w-full">
         {/* Left Menu */}
         <ul className="hidden gap-6 text-sm font-light md:flex">

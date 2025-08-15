@@ -1,33 +1,29 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./MoviesCarousel.css";
-import Work from "../../assets/Work.png";
-import NF from "../../assets/NF.png";
-import CF from "../../assets/CF.png";
-import GM from "../../assets/GM.png";
+import { motion } from "motion/react";
 
 const movies = [
   {
-    name: "Land Rover Defender ",
+    name: "Land Rover Defender",
     des: "Rugged luxury SUV with strong off-road prowess.",
-    img: "data:image/jpeg;base64,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",
+    img: "https://c4.wallpaperflare.com/wallpaper/805/752/971/land-rover-defender-urban-xrs-luxury-cars-black-cars-land-rover-vehicle-hd-wallpaper-preview.jpg",
     link: "https://c4.wallpaperflare.com/wallpaper/805/752/971/land-rover-defender-urban-xrs-luxury-cars-black-cars-land-rover-vehicle-hd-wallpaper-preview.jpg",
   },
   {
-    name: "BMW M5 ",
-    des: " Performance sedan with powerful engine and sporty refinement.",
-    img: "data:image/jpeg;base64,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",
+    name: "BMW M5",
+    des: "Performance sedan with powerful engine and sporty refinement.",
+    img: "https://www.wallpaperflare.com/static/554/11/812/car-bmw-bmw-m5-vehicle-wallpaper.jpg",
     link: "https://www.wallpaperflare.com/static/554/11/812/car-bmw-bmw-m5-vehicle-wallpaper.jpg",
   },
   {
     name: "Maybach GLS",
     des: "Ultra-luxury SUV with opulent cabin and grand ambiance.",
-    img: "data:image/jpeg;base64,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",
+    img: "https://c4.wallpaperflare.com/wallpaper/646/182/375/blue-background-mercedes-benz-mercedes-wallpaper-preview.jpg",
     link: "https://c4.wallpaperflare.com/wallpaper/646/182/375/blue-background-mercedes-benz-mercedes-wallpaper-preview.jpg",
   },
   {
     name: "Audi Q8",
     des: "Stylish coupe-like SUV offering strong presence and premium luxury.",
-    img: "data:image/jpeg;base64,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",
+    img: "https://i.pinimg.com/736x/31/99/e9/3199e9a9e8ea74702bd3fdbe8d297363.jpg",
     link: "https://i.pinimg.com/736x/31/99/e9/3199e9a9e8ea74702bd3fdbe8d297363.jpg",
   },
 ];
@@ -61,45 +57,103 @@ const MoviesCarousel = () => {
   }, []);
 
   return (
-    <div className="movies-list">
-      <div className="card-container" ref={containerRef}>
+    <motion.div 
+      className="w-full h-[500px] relative my-2.5 mx-0 overflow-x-hidden overflow-y-visible scroll-smooth pl-2.5 bg-black"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="relative w-full py-[70px] px-[70px] h-full flex items-center overflow-x-auto overflow-y-visible scroll-smooth gap-[50px] scrollbar-hide" ref={containerRef}>
         {movies.map((m, idx) => (
-          <div className="card" key={idx}>
-            <div className="card-img-blur-wrapper">
-              <img src={m.img} alt={m.name} className="card-img" />
+          <motion.div 
+            className="relative min-w-[43%] h-full w-[92%] rounded-xl overflow-hidden bg-black mr-5 transition-all duration-500 group cursor-pointer"
+            key={idx}
+            whileHover={{ 
+              scale: 1.1,
+              boxShadow: "0 0 20px rgba(236, 3, 3, 0.6)"
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+          >
+            <div className="absolute top-0 left-0 w-full h-full z-10 overflow-hidden">
+              <motion.img 
+                src={m.img} 
+                alt={m.name} 
+                className="w-full h-full object-cover"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              />
             </div>
-            <div className="card-body">
-              <h2 className=".about-reev-heading name">{m.name}</h2>
-              <br></br>
-              <h6 className="des">{m.des}</h6>
+            <motion.div 
+              className="relative z-20 flex flex-col items-center justify-center text-center h-full w-full px-2.5 bg-black/30 backdrop-blur-none"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <motion.h2 
+                className="relative inline-block no-underline text-red-500 text-2xl my-2 font-normal capitalize after:content-[''] after:absolute after:w-0 after:h-0.5 after:left-1/2 after:-bottom-1 after:bg-gradient-to-r after:from-transparent after:via-red-500 after:to-transparent after:shadow-[0_0_3px_#FF0000] after:transform after:-translate-x-1/2 after:transition-all after:duration-300 group-hover:after:w-full"
+              >
+                {m.name}
+              </motion.h2>
+              <motion.h6 
+                className="text-white opacity-80 font-medium text-sm mb-[50%]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                {m.des}
+              </motion.h6>
               {m.link ? (
-                <a
+                <motion.a
                   href={m.link}
-                  className="watchlist-btn"
+                  className="relative w-auto capitalize border-none font-medium text-right cursor-pointer rounded-md -mt-[20%] py-2 px-4 bg-red-900 text-white hover:bg-red-800 transition-colors duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   View
-                </a>
+                </motion.a>
               ) : (
-                <button className="watchlist-btn">Coming Soon</button>
+                <motion.button 
+                  className="relative w-auto capitalize border-none font-medium text-right cursor-pointer rounded-md -mt-[20%] py-2 px-4 bg-red-900 text-white hover:bg-red-800 transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Coming Soon
+                </motion.button>
               )}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
 
       {/* Circle Indicators */}
-      <div className="indicator-container">
+      <motion.div 
+        className="flex justify-center gap-2 mt-4"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         {movies.map((_, idx) => (
-          <div
+          <motion.div
             key={idx}
-            className={`indicator ${idx === currentIndex ? "active" : ""}`}
+            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
+              idx === currentIndex 
+                ? "bg-red-500 scale-125" 
+                : "bg-gray-400 hover:bg-gray-300"
+            }`}
             onClick={() => scroll(idx)}
-          ></div>
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          />
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

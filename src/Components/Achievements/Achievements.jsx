@@ -2,7 +2,6 @@ import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
-import "./Achievements.css";
 import MoviesCarousel from "../../Components/MoviesCarousel/MoviesCarousel";
 
 const Achievements = () => {
