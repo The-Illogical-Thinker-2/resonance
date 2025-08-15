@@ -114,7 +114,7 @@ export default function Index() {
         >
           <h1
             ref={reeRef}
-            className="text-[60px] md:text-[130px] font-black italic mb-4 hero-title font-['Orbitron','Exo_2','Rajdhani',sans-serif] tracking-widest transition-transform duration-300 ease-in-out text-red-500"
+            className="text-[60px] md:text-[130px] font-black italic mb-4 hero-title font-mono tracking-widest transition-transform duration-300 ease-in-out text-red-500"
             style={{
               textShadow: "0 0 30px rgba(220, 38, 38, 0.8)"
             }}
@@ -259,10 +259,10 @@ export default function Index() {
                 
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <motion.h3 
-                    className="text-4xl font-light text-white mb-3 font-sans tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
+                                    <motion.h3
+                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
                   >
-                    <span className="text-red-500 font-normal">REEV</span> Racer
+                    <span className="text-red-500 font-black italic">REEV</span> Racer
                   </motion.h3>
                   <motion.p 
                     className="text-gray-300 text-base mb-4 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
@@ -304,10 +304,10 @@ export default function Index() {
                 
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <motion.h3 
-                    className="text-4xl font-light text-white mb-3 font-sans tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
+                                    <motion.h3
+                    className="text-4xl font-light text-white mb-3 font-mono tracking-wide transition-colors duration-300 group-hover/card:text-red-500"
                   >
-                    <span className="text-red-500 font-normal">REEV</span> GoCar
+                    <span className="text-red-500 font-black italic">REEV</span> GoCar
                   </motion.h3>
                   <motion.p 
                     className="text-gray-300 text-base mb-4 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"

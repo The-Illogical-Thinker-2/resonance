@@ -64,50 +64,53 @@ const Carousel = () => {
         <div className="flex animate-marquee">
           {/* First set of certificates */}
           {certificates.map((cert, index) => (
-            <motion.div
+            <div
               key={index}
               className="flex-shrink-0 mx-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
             >
-              <div className="relative group cursor-pointer bg-black/50 rounded-lg overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(248,3,3,0.528)] transition-all duration-700 w-96">
+              <motion.div 
+                className="relative cursor-pointer bg-black/50 rounded-lg overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(248,3,3,0.528)] transition-shadow duration-700 w-96"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 <motion.img
                   src={cert.image}
                   alt={cert.name}
                   className="w-full h-64 object-cover brightness-90"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ brightness: 1.3 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
                   <h3 className="text-xl font-semibold text-white">{cert.name}</h3>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           ))}
-          {/* Duplicate set for seamless loop - using same content but different keys */}
+          {/* Duplicate set for seamless loop */}
           {certificates.map((cert, index) => (
-            <motion.div
-              key={`loop-${index}`}
+            <div
+              key={`duplicate-${index}`}
               className="flex-shrink-0 mx-8"
-              initial={{ opacity: 1, scale: 1 }}
             >
-              <div className="relative group cursor-pointer bg-black/50 rounded-lg overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(248,3,3,0.528)] transition-all duration-700 w-96">
+              <motion.div 
+                className="relative cursor-pointer bg-black/50 rounded-lg overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(248,3,3,0.528)] transition-shadow duration-700 w-96"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 <motion.img
                   src={cert.image}
                   alt={cert.name}
                   className="w-full h-64 object-cover brightness-90"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ brightness: 1.3 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
                   <h3 className="text-xl font-semibold text-white">{cert.name}</h3>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           ))}
         </div>
       </div>

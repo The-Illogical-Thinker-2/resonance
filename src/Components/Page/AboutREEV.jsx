@@ -72,11 +72,9 @@ const AboutREEV = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/30 z-10 group-hover:from-black/40 transition-all duration-500"></div>
           <motion.img
             alt="About REEV"
-            className="w-full h-80 lg:h-96 object-cover brightness-90 group-hover:brightness-110 transition-all duration-700"
+            className="w-full h-80 lg:h-96 object-cover brightness-90 group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
             loading="lazy"
             src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
           />
           {/* Professional Badge */}
           <div className="absolute top-4 right-4 bg-red-600/90 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-semibold shadow-lg">
@@ -101,7 +99,7 @@ const AboutREEV = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <h2 className="about-reev-heading text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide font-mono uppercase relative inline-block">
+              <h2 className="about-reev-heading text-4xl md:text-5xl lg:text-6xl font-black italic text-white tracking-wide font-mono uppercase relative inline-block">
                 <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
                   About REEV
                 </span>

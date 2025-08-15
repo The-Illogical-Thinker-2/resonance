@@ -25,13 +25,13 @@ function Nav() {
       <div className="flex items-center justify-between w-full">
         {/* Left Menu */}
         <ul className="hidden gap-6 text-sm font-light md:flex">
-          <li className="text-lg font-semibold cursor-pointer transition hover:text-red-400">
+          <li className="text-lg font-black italic cursor-pointer transition hover:text-red-600 font-mono">
             <Link to="/">REEV</Link>
           </li>
           <li>
             <a
               href="#SAEINDIA"
-              className="text-lg font-semibold cursor-pointer transition hover:text-red-400"
+              className="text-lg font-semibold cursor-pointer transition hover:text-red-600"
             >
               SAEINDIA
             </a>
@@ -39,20 +39,20 @@ function Nav() {
           <li>
             <a
               href="#VISION"
-              className="text-lg font-semibold cursor-pointer transition hover:text-red-400"
+              className="text-lg font-semibold cursor-pointer transition hover:text-red-600"
             >
               VISION
             </a>
           </li>
 
-          <li className="text-lg font-semibold cursor-pointer transition hover:text-red-400">
+          <li className="text-lg font-semibold cursor-pointer transition hover:text-red-600">
             <Link to="/achievements">ACHIEVEMENTS</Link>
           </li>
 
           <li>
             <a
               href="#Contact"
-              className="text-lg font-semibold cursor-pointer transition hover:text-red-400"
+              className="text-lg font-semibold cursor-pointer transition hover:text-red-600"
             >
               CONTACT
             </a>
@@ -60,7 +60,7 @@ function Nav() {
         </ul>
 
         {/* Right Brand */}
-        <div className="ml-auto text-4xl font-bold tracking-wide cursor-pointer font-bricolage">
+        <div className="ml-auto text-4xl font-black italic tracking-wide cursor-pointer font-mono">
           <span className="text-red-500">REEV</span>- SAEINDIA
         </div>
 
@@ -78,7 +78,7 @@ function Nav() {
       {menuOpen && (
         <div className="md:hidden mt-4 flex flex-col gap-4 text-sm font-light z-[9999]">
           <ul className="flex flex-col gap-4">
-            <li className="text-lg font-semibold text-red-500 cursor-pointer">
+            <li className="text-lg font-black italic text-red-500 cursor-pointer font-mono">
               REEV
             </li>
             <li className="text-lg font-semibold transition cursor-pointer hover:text-red-500">
