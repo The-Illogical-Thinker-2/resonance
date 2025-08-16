@@ -52,8 +52,8 @@ const Carousel = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2 className="relative inline-block text-3xl font-bold text-white">
-          <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-4 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+        <h2 className="relative inline-block text-4xl md:text-5xl font-bold text-white tracking-wide font-mono">
+          <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-0.5 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
             Why Join Us ?
           </span>
         </h2>

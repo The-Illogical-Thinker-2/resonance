@@ -184,14 +184,14 @@ export default function Index() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="relative inline-block text-3xl font-bold text-white">
-            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+          <h2 className="relative inline-block text-4xl md:text-5xl font-bold font-mono text-white tracking-wide">
+            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-0.5 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
               Why Join Us ?
             </span>
           </h2>
         </motion.div>
 
-        <p>
+        <p className="font-mono text-xl">
           <br></br>
           I'm Anmol Gour, currently pursuing my B.Tech in Computer Science
           Engineering. I have a strong interest in Full Stack Web Development,
@@ -232,7 +232,7 @@ export default function Index() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="relative inline-block text-5xl md:text-6xl font-light text-white mb-4 tracking-wide">
+            <h2 className="relative inline-block text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
               <span className="font-mono after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
                 Our Fleet
               </span>
@@ -339,14 +339,14 @@ export default function Index() {
       {/* End of Gokart */}
       <div className="JoineUs bg-black py-20 group">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="relative inline-block text-3xl font-bold text-white">
-            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+          <h2 className="relative inline-block font-bold text-white">
+            <span className="relative font-mono text-4xl md:text-5xl after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
               Sponsors
             </span>
           </h2>
