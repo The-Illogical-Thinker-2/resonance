@@ -337,9 +337,9 @@ export default function Index() {
       {/* End of Gokart / OUR FLEET Section */}
 
       {/* End of Gokart */}
-      <div className="JoineUs bg-black py-20 group">
+      <div className="bg-black py-20 group">
         <motion.div 
-          className="text-center mb-8"
+          className="text-center mb-3"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -356,8 +356,8 @@ export default function Index() {
 
         {/* Footer Section */}
         {/* Footer Section */}
-        <div className="marquee-box">
-          <marquee behavior="alternate" direction="">
+        <div className="mt-20 mb-40">
+          <marquee behavior="alternate" direction="" className="block m-0 p-0 leading-none [margin-block:0] [margin-inline:0]">
             <div className="marquee-content flex flex-row gap-[200px]">
               <div className="flex items-center gap-3">
                 <img src={slideImg1} className="w-20 h-20 invert" alt="" />
