@@ -11,7 +11,7 @@ function Footer() {
               <React.Fragment key={i}>
                 <a
                   href="#"
-                  className="hover:text-[var(--primary-color)] transition-colors mx-3"
+                  className="hover:text-red-500 transition-colors mx-3"
                 >
                   {link}
                 </a>
