@@ -1,11 +1,55 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
 
+// Custom hook for mobile underline animation
+const useAnimatedUnderline = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return; // Only run on mobile
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [isMobile]);
+
+  return { ref, isInView: isInView && isMobile };
+};
+
 const AboutREEV = () => {
   const aboutRef = useRef(null);
   const imageRef = useRef(null);
   const [aboutVisible, setAboutVisible] = useState(false);
   const [imageVisible, setImageVisible] = useState(false);
+  
+  // Mobile underline hook
+  const aboutUnderline = useAnimatedUnderline();
 
   // Effect for the text slide-in animation
   useEffect(() => {
@@ -99,8 +143,11 @@ const AboutREEV = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <h2 className="about-reev-heading text-4xl md:text-5xl lg:text-6xl font-black italic text-white tracking-wide font-mono uppercase relative inline-block">
-                <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+              <h2 
+                ref={aboutUnderline.ref}
+                className="about-reev-heading text-4xl md:text-5xl lg:text-6xl font-black italic text-white tracking-wide font-mono uppercase relative inline-block"
+              >
+                <span className={`relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-700 hover:after:w-full ${aboutUnderline.isInView ? 'after:w-full' : 'after:w-0'}`}>
                   About REEV
                 </span>
               </h2>

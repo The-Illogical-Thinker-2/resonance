@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "motion/react";
 
 const certificates = [
@@ -61,7 +60,17 @@ const Carousel = () => {
       
       {/* Infinite Marquee */}
       <div className="relative overflow-hidden">
-        <div className="flex animate-marquee">
+        <motion.div 
+          className="flex"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            x: {
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }
+          }}
+        >
           {/* First set of certificates */}
           {certificates.map((cert, index) => (
             <div
@@ -112,7 +121,7 @@ const Carousel = () => {
               </motion.div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );

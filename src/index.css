@@ -14,6 +14,7 @@
     display: none;
   }
   
+  /* Marquee animation */
   .animate-marquee {
     animation: marquee 25s linear infinite;
     width: max-content;
@@ -29,6 +30,7 @@
   }
 }
 
+/* Global styles */
 * {
   margin: 0;
   padding: 0;
@@ -45,6 +47,7 @@ body {
   color: #fff;
 }
 
+/* CSS Custom Properties */
 :root {
   --primary-color: #ff0000;
   --body-color: #000000;
@@ -59,11 +62,48 @@ body {
   --transition-slow: 0.6s;
 }
 
+/* Navigation z-index */
 nav {
   z-index: 9999 !important;
 }
 
-/* Ensure video covers full screen on all devices with optimal resolution */
+/* Racing-themed red scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #1a1a1a, #000);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff0000, #cc0000, #990000);
+  border-radius: 10px;
+  border: 2px solid #000;
+  box-shadow: 
+    inset 0 0 6px rgba(255, 0, 0, 0.3),
+    0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff3333, #ff0000, #cc0000);
+  box-shadow: 
+    inset 0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+::-webkit-scrollbar-corner {
+  background: #000;
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ff0000 #1a1a1a;
+}
+
+/* Video optimization for hero section */
 @media screen and (max-aspect-ratio: 16/9) {
   .hero-section video {
     width: auto !important;
@@ -82,72 +122,9 @@ nav {
   }
 }
 
-/* Additional resolution optimization */
 .hero-section video {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-/* Marquee styling for sponsors section */
-.marquee-box {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  margin-top: 10%;
-  padding: 1rem 0;
-  z-index: 999;
-}
-
-.marquee-box:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  z-index: -1;
-}
-
-/* Learn more line styling for section headers */
-.learn-more-line {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.learn-more-line::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #ff0000, transparent);
-  box-shadow: 0 0 3px #ff0000;
-  transform: translateX(-50%);
-  transition: width 2s ease-in-out;
-}
-
-.learn-more-line.active::after,
-.learn-more-line:hover::after {
-  width: 100%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 991px) {
-  .marquee-box {
-    margin-top: 1.5rem;
-    padding: 0.8rem 0;
-  }
-}
-
-@media (max-width: 575px) {
-  .marquee-box {
-    margin-top: 1rem;
-    padding: 0.5rem 0;
-  }
-}

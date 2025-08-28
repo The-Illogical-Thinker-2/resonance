@@ -3,15 +3,15 @@ import React from "react";
 function Footer() {
   return (
     <>
-      <footer className="bg-black text-white px-[8%] lg:px-[12%] pt-1 pb-10 font-[var(--Plus-Jakarta-font)]">
+      <footer className="bg-red-800 text-white px-[8%] lg:px-[12%] pt-1 pb-10 font-[var(--Plus-Jakarta-font)]">
         {/* Navigation Links */}
-        <div className="mx-auto flex flex-wrap justify-center items-center gap-4 text-base pb-6">
+        <div className="mx-auto flex flex-wrap justify-center items-center gap-4 text-base pb-6 mt-10">
           {["Home", "Achievements", "Team", "Go-Kart", "Reev", "Join Us"].map(
             (link, i) => (
               <React.Fragment key={i}>
                 <a
                   href="#"
-                  className="hover:text-red-500 transition-colors mx-3"
+                  className="hover:text-black transition-colors mx-3"
                 >
                   {link}
                 </a>
@@ -33,7 +33,7 @@ function Footer() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-20 h-20 flex items-center justify-center text-white  hover:text-red-600 transition-all duration-300"
+              className="w-20 h-20 flex items-center justify-center text-white  hover:text-black transition-all duration-300"
             >
               <i className={`${icon} text-3xl`}></i>
             </a>

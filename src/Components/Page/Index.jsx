@@ -3,6 +3,47 @@ import { motion } from "motion/react";
 import Carousel from "../../Components/Carousel/Carousel";
 import MoviesCarousel from "../../Components/MoviesCarousel/MoviesCarousel";
 
+// Custom hook for mobile underline animation
+const useAnimatedUnderline = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return; // Only run on mobile
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [isMobile]);
+
+  return { ref, isInView: isInView && isMobile };
+};
+
 // Video - now using public folder video
 
 // Assets
@@ -27,6 +68,11 @@ export default function Index() {
   const saeRef = useRef(null);
   const taeRef = useRef(null);
 
+  // Mobile underline hooks for section headings
+  const aboutUnderline = useAnimatedUnderline();
+  const whyJoinUnderline = useAnimatedUnderline();
+  const fleetUnderline = useAnimatedUnderline();
+  const sponsorsUnderline = useAnimatedUnderline();
 
   const [heroTextVisible, setHeroTextVisible] = useState(false);
   useEffect(() => {
@@ -148,17 +194,35 @@ export default function Index() {
         </div>
         
         {/* Floating Elements for Professional Touch */}
-        <div className="absolute top-20 left-20 w-32 h-32 border border-red-600/20 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/20 rounded-full animate-pulse [animation-delay:1s]"></div>
+        <motion.div 
+          className="absolute top-20 left-20 w-32 h-32 border border-red-600/20 rounded-full"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.5, 1, 0.5] 
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute bottom-20 right-20 w-24 h-24 border border-white/20 rounded-full"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.5, 1, 0.5] 
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        ></motion.div>
       </section>
 
-      <br></br>
-      <br></br>
-      {/* About Section with Splide AutoScroll */}
-      <div
-        id="REEV"
-        className="relative text-center w-full py-[10px] pt-0"
-      ></div>
+      {/* About Section Anchor */}
+      <div id="REEV" className="relative"></div>
 
       {/* About Section - Lazy Loaded */}
       <Suspense fallback={
@@ -174,39 +238,62 @@ export default function Index() {
         <LazyAboutREEV />
       </Suspense>
 
-      {/* why join us */}
-      <div className="JoinUs bg-black py-20 group">
+      {/* About Our Team Section */}
+      <section className="bg-black py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
-        <motion.div 
-          className="mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="relative inline-block text-4xl md:text-5xl font-bold font-mono text-white tracking-wide">
-            <span className="relative after:content-[''] after:absolute after:left-1/2 after:-bottom-0.5 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
-              Why Join Us ?
-            </span>
-          </h2>
-        </motion.div>
+          <motion.div 
+            className="mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 
+              ref={whyJoinUnderline.ref}
+              className="text-4xl md:text-5xl font-bold font-mono text-white tracking-wide mb-8 relative"
+            >
+              <span className={`relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-700 ${whyJoinUnderline.isInView ? 'after:w-full' : 'after:w-0'}`}>
+                Why Join Us ?
+              </span>
+            </h2>
+          </motion.div>
 
-        <p className="font-mono text-xl">
-          <br></br>
-          I'm Anmol Gour, currently pursuing my B.Tech in Computer Science
-          Engineering. I have a strong interest in Full Stack Web Development,
-          and I’m actively learning and working with technologies such as HTML,
-          CSS, JavaScript, React, Vite, Tailwind CSS, Angular,Bootstrap,
-          Node.js,Neo4j, and Google Cloud. In addition to my development work,
-          I’m passionate about Problem Solving and enjoy tackling coding
-          challenges to sharpen my logic and analytical skills.
-        </p>
+          <motion.div 
+            className="gap-12 items-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+           
+            {/* Join Us Benefits */}
+            <motion.div 
+              className="space-x-6 grid lg:grid-cols-3 grid-rows-1 h-[18.75rem]"
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-red-600/20 col-span-1">
+                <h4 className="text-2xl font-bold text-red-600 mb-12 mt-4 font-mono">Innovation</h4>
+                <p className="text-gray-300">Work on cutting-edge electric vehicle technology and sustainable transportation solutions.</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-red-600/20 col-span-1">
+                <h4 className="text-2xl font-bold text-red-600 mb-12 mt-4 font-mono">Collaboration</h4>
+                <p className="text-gray-300">Join a passionate team of engineers and developers working towards a greener future.</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-red-600/20">
+                <h4 className="text-2xl font-bold text-red-600 mb-12 mt-4 font-mono">Growth</h4>
+                <p className="text-gray-300">Develop your skills in automotive technology, motorsports, and sustainable engineering.</p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
 
       {/* Carousel Section - Autoplay */}
-      <section className="py-10">
+      <section className="py-20">
         <Carousel
           slides={[slideImg1, slideImg2, slideImg3]}
           autoplay={true}
@@ -232,8 +319,11 @@ export default function Index() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="relative inline-block text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
-              <span className="font-mono after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+            <h2 
+              ref={fleetUnderline.ref}
+              className="relative inline-block text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide"
+            >
+              <span className={`font-mono relative after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-700 hover:after:w-full ${fleetUnderline.isInView ? 'after:w-full' : 'after:w-0'}`}>
                 Our Fleet
               </span>
             </h2>
@@ -345,8 +435,11 @@ export default function Index() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="relative inline-block font-bold text-white">
-            <span className="relative font-mono text-4xl md:text-5xl after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-500 group-hover:after:w-full">
+          <h2 
+            ref={sponsorsUnderline.ref}
+            className="relative inline-block font-bold text-white"
+          >
+            <span className={`relative font-mono text-4xl md:text-5xl after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-red-600 after:to-transparent after:transform after:-translate-x-1/2 after:transition-all after:duration-700 hover:after:w-full ${sponsorsUnderline.isInView ? 'after:w-full' : 'after:w-0'}`}>
               Sponsors
             </span>
           </h2>
@@ -354,124 +447,185 @@ export default function Index() {
 
         {/* Work Section */}
 
-        {/* Footer Section */}
-        {/* Footer Section */}
-        <div className="mt-20 mb-40">
-          <marquee behavior="alternate" direction="" className="block m-0 p-0 leading-none [margin-block:0] [margin-inline:0]">
-            <div className="marquee-content flex flex-row gap-[200px]">
-              <div className="flex items-center gap-3">
-                <img src={slideImg1} className="w-20 h-20 invert" alt="" />
+        {/* Sponsors Marquee */}
+        <div className="mt-20 mb-40 overflow-hidden">
+          <motion.div 
+            className="flex"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              x: {
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear"
+              }
+            }}
+          >
+            {/* First set of sponsors */}
+            <div className="flex items-center gap-12 mr-12 min-w-max">
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/04/Michelin-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Michelin" 
+                />
                 <div>
-                  <h2 className="text-4xl ">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Connectivity{" "}
-                    </span>
-                  </h2>
-                  <p className="text-md">Collaborate with others</p>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Michelin</h3>
+                  <p className="text-sm text-gray-400">Tire Partner</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg2} className="w-20 h-20 invert" alt="" />
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/09/Shell-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Shell" 
+                />
                 <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Graphic Designing{" "}
-                    </span>
-                  </h2>
-                  <p className="text-md">To create effectiveness</p>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Shell</h3>
+                  <p className="text-sm text-gray-400">Fuel Partner</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg3} className="w-20 h-20 invert" alt="" />
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/08/Red-Bull-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Red Bull" 
+                />
                 <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Readability
-                    </span>
-                  </h2>
-                  <p className="text-md">Proper spacing & font</p>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Red Bull</h3>
+                  <p className="text-sm text-gray-400">Energy Partner</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg4} className="w-20 h-20 invert" alt="" />
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/11/Bosch-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Bosch" 
+                />
                 <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Professional Branding
-                    </span>
-                  </h2>
-                  <p className="text-md">Consistent tone & voice</p>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Bosch</h3>
+                  <p className="text-sm text-gray-400">Technology Partner</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg5} className="w-20 h-20 invert" alt="" />
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/09/Pirelli-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Pirelli" 
+                />
                 <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      User-friendliness
-                    </span>
-                  </h2>
-                  <p className="text-md">Quick to get into</p>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Pirelli</h3>
+                  <p className="text-sm text-gray-400">Tire Partner</p>
                 </div>
-              </div>
-              {/* Repeat for seamless scrolling */}
-              <div className="flex items-center gap-3">
-                <img src={slideImg1} className="w-20 h-20 invert" alt="" />
-                <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Connectivity
-                    </span>
-                  </h2>
-                  <p className="text-md">Collaborate with others</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg2} className="w-20 h-20 invert" alt="" />
-                <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Graphic Designing
-                    </span>
-                  </h2>
-                  <p className="text-md">To create effectiveness</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg3} className="w-20 h-20 invert" alt="" />
-                <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Readability
-                    </span>
-                  </h2>
-                  <p className="text-md">Proper spacing & font</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg4} className="w-20 h-20 invert" alt="" />
-                <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      Professional Branding
-                    </span>
-                  </h2>
-                  <p className="text-md">Consistent tone & voice</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <img src={slideImg5} className="w-20 h-20 invert" alt="" />
-                <div>
-                  <h2 className="text-4xl">
-                    <span className="font-['Orbitron','Exo_2','Rajdhani',sans-serif] font-black text-red-600">
-                      User-friendliness
-                    </span>
-                  </h2>
-                  <p className="text-md">Quick to get into</p>
-                </div>
-              </div>
+              </motion.div>
             </div>
-          </marquee>
+            
+            {/* Duplicate set for seamless loop */}
+            <div className="flex items-center gap-12 mr-12 min-w-max">
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/04/Michelin-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Michelin" 
+                />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Michelin</h3>
+                  <p className="text-sm text-gray-400">Tire Partner</p>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/09/Shell-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Shell" 
+                />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Shell</h3>
+                  <p className="text-sm text-gray-400">Fuel Partner</p>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/08/Red-Bull-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Red Bull" 
+                />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Red Bull</h3>
+                  <p className="text-sm text-gray-400">Energy Partner</p>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/11/Bosch-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Bosch" 
+                />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Bosch</h3>
+                  <p className="text-sm text-gray-400">Technology Partner</p>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-lg border border-red-600/20"
+                whileHover={{ scale: 1.05, borderColor: "rgba(239, 68, 68, 0.5)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2020/09/Pirelli-Logo.png" 
+                  className="w-16 h-16 object-contain" 
+                  alt="Pirelli" 
+                />
+                <div>
+                  <h3 className="text-2xl font-bold text-red-600 font-mono">Pirelli</h3>
+                  <p className="text-sm text-gray-400">Tire Partner</p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
